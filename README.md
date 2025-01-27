@@ -8,9 +8,9 @@ Deze documentatie heeft in deze fase alleen nog betrekking op de ingest-fase.
 
 De repository bestaat uit de volgende mappen en bestanden:
 
-- [premis_events](premis_events/): de beschrijving van de PREMIS events die in het RAZU e-depot gebruikt worden.
-- [shapes](shapes/): SHACL shapes ter validatie van PREMIS events.
-- [validator](validator/): een python script om de SHACL te gebruiken om PREMIS events te valideren.
-- [test](test/): PyTest tests om de SHACL te controleren.
+- [premis_events](premis_events.md): de beschrijving van de PREMIS events die in het RAZU e-depot gebruikt worden.
+- [shacl](shacl/premis-shacl.ttl): SHACL shapes ter validatie van PREMIS events.
+- [validator](scripts/validator.py): een python script om de SHACL te gebruiken om PREMIS events te valideren.
+- [tests](tests/): PyTest tests om de SHACL te controleren.
 
 
