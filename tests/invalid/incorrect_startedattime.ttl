@@ -1,0 +1,15 @@
+@prefix ns1: <http://www.loc.gov/premis/rdf/v3/> .
+@prefix ns2: <http://id.loc.gov/vocabulary/preservation/eventRelatedAgentRole/> .
+@prefix ns3: <http://id.loc.gov/vocabulary/preservation/eventRelatedObjectRole/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://data.razu.nl/id/event/NL-WbDRAZU-K50907905-500-e1> a ns1:Event ;
+    ns2:exe <https://data.razu.nl/id/applicatie/1d7104dc068ca27a7f85d4eb18414097> ;
+    ns2:imp <https://data.razu.nl/id/actor/2bdb658a032a405d71c19159bd2bbb3a> ;
+    ns3:sou <https://k50907905.opslag.razu.nl/NL-WbDRAZU-K50907905-500-0.xlsx> ;
+    ns1:eventType <http://id.loc.gov/vocabulary/preservation/eventType/mes> ;
+    ns1:outcome <http://id.loc.gov/vocabulary/preservation/eventOutcome/suc> ;
+    ns1:outcomeNote "md5sum: 2f01c68bb4098d55c3483021b898aa33" ;
+    prov:endedAtTime "2025-01-13T10:28:59.004406+00:00"^^xsd:dateTime ;
+    prov:startedAtTime "eerder" . 

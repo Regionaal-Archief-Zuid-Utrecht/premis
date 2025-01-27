@@ -1,0 +1,90 @@
+@prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh:       <http://www.w3.org/ns/shacl#> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:      <http://www.w3.org/2002/07/owl#> .
+@prefix ldto:     <https://data.razu.nl/def/ldto/> .
+@prefix premis:   <http://www.loc.gov/premis/rdf/v3/> .
+@prefix shape:    <https://data.razu.nl/def/premis-shacl/> .
+@prefix eror:     <http://id.loc.gov/vocabulary/preservation/eventRelatedObjectRole/> .
+@prefix erar:     <http://id.loc.gov/vocabulary/preservation/eventRelatedAgentRole/> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+
+
+shape:EventShape
+    sh:name "EventShape" ;
+    a sh:NodeShape ;
+    sh:targetClass premis:Event ;
+    sh:property [
+        a sh:PropertyShape;
+        sh:path premis:eventType ;
+        sh:minCount 1;
+        sh:maxCount 1;
+        sh:nodeKind sh:IRI
+    ] , [
+        a sh:PropertyShape;
+        sh:path premis:outcome ;
+        sh:minCount 1;
+        sh:maxCount 1;
+        sh:nodeKind sh:IRI   
+    ] , [
+        a sh:PropertyShape;
+        sh:path prov:endedAtTime;
+        sh:minCount 1;
+        sh:maxCount 1;
+        sh:datatype xsd:dateTime   
+    ], [
+        a sh:PropertyShape;
+        sh:path erar:imp ;
+        sh:minCount 1;
+        sh:maxCount 1;
+        sh:nodeKind sh:IRI   
+    ] , [
+        a sh:PropertyShape;
+        sh:path erar:exe ;
+        sh:maxCount 1;
+        sh:nodeKind sh:IRI   
+    ], [
+        a sh:PropertyShape;
+        sh:path prov:startedAtTime;
+        sh:maxCount 1;
+        sh:datatype xsd:dateTime  
+    ] 
+ .
+
+
+shape:EventShapeConditional
+    a sh:NodeShape ;
+    sh:targetClass premis:Event ;
+    sh:or (
+        [
+            sh:property [
+                a sh:PropertyShape ;
+                sh:path premis:eventType ;
+                sh:or (
+                    [ sh:hasValue <http://id.loc.gov/vocabulary/preservation/eventType/mes> ]
+                    [ sh:hasValue <http://id.loc.gov/vocabulary/preservation/eventType/for> ]
+                ) ;
+            ] ;
+            sh:property [
+                a sh:PropertyShape ;
+                sh:path premis:outcomeNote ;
+                sh:minCount 1 ;
+                sh:maxCount 1 ;
+                sh:message "Each premis:Event with eventType 'mes' or 'for' must have exactly one premis:outcomeNote." ;
+            ] ;
+        ]
+        [
+            sh:not [
+                sh:property [
+                    sh:path premis:eventType ;
+                    sh:or (
+                        [ sh:hasValue <http://id.loc.gov/vocabulary/preservation/eventType/mes> ]
+                        [ sh:hasValue <http://id.loc.gov/vocabulary/preservation/eventType/for> ]
+                    ) ;
+                ]
+            ]
+        ]
+    ) .
